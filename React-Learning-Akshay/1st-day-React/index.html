@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <!-- Lets render all element from JS here  -->
+   <div class="rootJS"> 
+    <h1> This is how we show the content directly into the HTML</h1>
+    <h4></h4>
+    </div>
+
+    <!-- Lets render all element from React here  -->
+    <div class="rootReactJS"> </div>
+
+    <!-- for nester element  -->
+    <div class="root"></div>
+
+    <!-- Enabling JS using script tag -->
+    <script>
+        /* In the HTML Document, as the h4 element is already exist, so we are not creating, we are directly quering that and 
+        adding the HTML into that. */
+        const h4 = document.querySelector("h4")
+        h4.innerHTML="Hmm, I am coming from Javascript"
+
+        /* But, if there is no element on the document, 1st we have to create the element & then we have to attach the HTML into that*/
+
+        //Creating the element
+        const heading = document.createElement("h1")
+        heading.innerHTML = "Hello Boy, I am also coming from JS, but first I had to create an element for myself and then I got appended into the Div"
+
+        //  Now calling the div class where we should show or Render the HTML
+        const rootHTML = document.querySelector(".rootJS")
+        rootHTML.appendChild(heading)
+
+       
+
+        /* Same as above example*/
+        const para = document.createElement("p")
+        para.innerHTML="Oh ho, same as above"
+
+        document.querySelector(".root").appendChild(para)
+
+
+    </script>
+    <!-- JS ends here  -->
+
+    <!-- React starts from here  -->
+    <!-- Enabling React by copying the React CDN from : https://legacy.reactjs.org/docs/cdn-links.html -->
+    
+   
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="./App.js"></script>
+    
+    <!-- <script>
+    </script> -->
+</body>
+</html>

@@ -1,0 +1,15 @@
+.calculatorOuter{
+  border: 1px solid black;
+  width: 200px;
+  border-radius: 5px;
+  margin-left: 30px;
+  margin-top: 30px;
+  background-color: black;
+}
+
+/* .calculatorDisplay{
+  margin: 10px;
+  width: 180px;
+  font-size: 25px;
+} */
+

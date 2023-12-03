@@ -1,0 +1,9 @@
+h1 {
+  font-weight: 700;
+  font-size: 10px;
+  margin-bottom: 40px;
+}
+
+.button{
+  min-width: 80px;
+}

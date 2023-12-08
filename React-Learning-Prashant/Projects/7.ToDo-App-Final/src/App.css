@@ -1,0 +1,17 @@
+h1 {
+  font-weight: 700;
+  font-size: 10px;
+  margin-bottom: 40px;
+}
+
+.button{
+  min-width: 80px;
+}
+
+.to-doCenter{
+  border: 1px solid red;
+}
+
+.toDo-Content{
+  border: 1px solid black;
+}

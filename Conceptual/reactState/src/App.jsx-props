@@ -1,0 +1,18 @@
+import React, { useState } from 'react'
+import Card from './Card'
+
+const App = () => {
+  const [count, setCount] = useState(["User1", "User2", "User3"])
+
+ function useUserUpdate(){
+  setCount(prevCount => [...prevCount, "Vivek"])
+ }
+
+  return (
+    <div>
+      <Card userCount={count.length} userUpdate={useUserUpdate} />
+    </div>
+  )
+}
+
+export default App

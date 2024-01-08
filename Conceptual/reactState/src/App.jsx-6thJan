@@ -1,0 +1,36 @@
+// Parent Component 
+
+import React, { useState } from 'react'
+import Card from './Card'
+
+const App = () => {
+    const [field, setField] = useState("")
+const obj = [{content:"Nice - I Liked It", cost:40 }, {content:"Pizaaaa", cost:80 }, {content:"Icecream", cost:80 }]
+  return (
+    <>
+    <div className='flex gap-1 ' >
+    {/* manaually updating each child components to render the UI - Not a good practice  */}
+    {/* <Card content={"Nice - I Liked It"} cost={40}/>
+    <Card content={"Pizaaaa"} cost={80} /> */}
+
+    {/* 
+    * If we have data, we can loop through the data and pass that as a prop and we can use the data key as a prop key on the child
+     */}
+     {/* 1st way - It again needs some manuall entry of props  */}
+     {/* {obj.map((elem, index)=>{return <Card key={index} content={elem.content} cost={elem.cost} />})} */}
+
+     {/* 2nd and most effective way, where we dont need the props to be entered manually  */}
+    {obj.map((elem, index)=>{return <Card key={index} {...elem} />})}
+
+    </div>
+    <br />
+    <div>
+        <input onChange={(e)=>{setField(e.target.value)}} className=' bg-slate-200 ' type="text" name="" id="search" value={field} />
+        <h1> box has : {field} </h1>
+    </div>
+    </>
+  )
+  
+}
+
+export default App

@@ -1,0 +1,29 @@
+import { useState } from 'react'
+
+function App() {
+  const [friend, setFriend] = useState("Partho")
+  const [name, setName] = useState(["Leia", "Girrafe", "Gillaree", "Partho", "Meriya"])
+  return (
+    <> 
+
+    <div>
+      <h1> Friend : {friend} </h1>
+      <button className='px-2 py-1 bg-yellow-600 rounded ' onClick={()=>{friend==="Partho"?setFriend("John"):setFriend("Partho")}} > Add Friend</button>
+    </div>
+  
+
+    {/* Lets build something*/}
+
+    <div>
+      <h1>Total People : {name.length}</h1>
+      <h1> Names are : {name.join(", ") } </h1>
+      <button className=' px-3 py-1 bg-orange-500 rounded-md cursor-pointer ' onClick={()=>{setName([...name, "Victor"])}} > Add </button>
+      {/* <button className=' px-3 py-1 bg-orange-500 rounded-md cursor-pointer ' onClick={()=>{setName(name.slice(0, -1))}} > Delete </button> */}
+      <button className='px-3 py-1 bg-orange-500 rounded-md cursor-pointer' onClick={() => { setName(name.filter((item, index) => index!==name.length-1 )) }}>Delete</button>
+    </div>
+
+    </>
+  )
+}
+
+export default App

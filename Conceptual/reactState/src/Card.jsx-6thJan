@@ -1,0 +1,17 @@
+
+// child component 
+
+import React from 'react'
+
+const Card = ({content, cost, rating}) => {
+  return (
+    <div className=' relative h-44 w-44 bg-slate-300' >
+        <h1> {content} </h1>
+        <h1> Price : {cost} </h1>
+        {rating}
+        <button className=' absolute bottom-0 left-5 px-2 py-1 bg-yellow-600 rounded-md' > Download  </button>
+    </div>
+  )
+}
+
+export default Card

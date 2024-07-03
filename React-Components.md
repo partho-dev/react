@@ -38,3 +38,35 @@ There are 5 values are there inside the data to make a card.
 {elem.available ? <button className='px-1 py-1 bg-blue-500 text-white text-xs rounded-lg mt-10'> Available </button> : <button className='px-1 py-1 bg-red-500 text-white text-xs rounded-lg mt-10'> Not Available </button> }
 ```
 <img width="1669" alt="ui" src="https://github.com/partho-dev/react/assets/150241170/ce203088-19b7-4449-a769-cc6c37dcc0a2">
+
+
+## How to handle Events 
+- Like in JS, we handle events like this 
+    - document.querySelector(".button").addEventListener("click", ()=>{//do something})
+- For React, we cant do that, as there is no DOM, React creates Virtual DOM and so, we have to impliment the Events on the `Button` itself
+
+- `onClick={()=>{}}`
+    - There are many events and all accepts a `call back function` and this will get execute everytime we click on the button.
+
+```
+<button onClick={()=>{alert("Hello Ji, The product is available")}} 
+```
+Else, we can declare the function on the data collection place of the components
+
+On the Data collection section 
+
+```
+const Cards = () => {
+
+  let onClickHandle = ()=>{alert("Hello Ji, The product is available")}
+  return ()}
+```
+
+On the Button, just add the function, `Dont` execute that with `()`
+```
+<button onClick={onClickHandle} Download </button>\
+```
+
+- There are many events available 
+<img width="302" alt="events" src="https://github.com/partho-dev/react/assets/150241170/6aa738ca-bcee-4671-af82-4222a0227890">
+

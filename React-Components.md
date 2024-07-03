@@ -64,7 +64,7 @@ const Cards = () => {
 
 On the Button, just add the function, `Dont` execute that with `()`
 ```
-<button onClick={onClickHandle} Download </button>\
+<button onClick={onClickHandle} Download </button>
 ```
 
 - There are many events available 

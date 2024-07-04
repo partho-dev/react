@@ -22,6 +22,32 @@ There are 5 values are there inside the data to make a card.
 - In the data, we get some value and based on that value, we show the UI.
 - Ex: We have some items available and so we would need to show on the UI as `available` else `Not Available`
 
+- If we want to change the CSS class also to be changed based on condition, we have to follow this.
+
+To update the color of button, based on condition like, if the item added is true, the button color should be green, else blue
+
+* Without any condition
+```
+<button className="px-2 py2 bg-blue-400 rounded-md absolute text-white text-sm bottom-0 left-[1/2] -translate-x-[-50%] translate-y-[50%]"> 
+        {added?"Added":"Add to Cart"} 
+        </button>
+```
+
+This is the final output of changing the class as per the condition.
+1. `Put the class inside backtick ` **` `**
+2. Wrap the class inside `{}`
+3. The value needs to be inside es6 `${}`
+4. Ensure to keep the value inside "bg-blue-400" `${added? "bg-blue-400":"bg-green-400"}`
+Without conditions: `className="px-2 py2 bg-blue-400"`
+With Condition : className=` `{px-2 py2 ${added? "bg-blue-400":"bg-green-400"}}` `
+
+* With COndition
+```
+<button className={`px-2 py2 ${added? "bg-blue-400":"bg-green-400"} rounded-md absolute text-white text-sm bottom-0 left-[1/2] -translate-x-[-50%] translate-y-[50%]`}> 
+        {added?"Added":"Add to Cart"} 
+        </button>
+```
+
 **Data on data section of the component**
 `available:true` or `available:false`
 ```

@@ -1,37 +1,30 @@
-In React we cant change the value directly through local variable
-& so, react has given a concept called "state" variable
-This allows to change the value of any variable upon some event and that stores into the variable and that is shown to the UI
+- In React we cant change the value directly through local variable
+& so, react has given a concept called `state variable`
+- This allows to change the value of any variable upon some `event` and that stores into the variable and that is shown to the UI
 
 - The hook which is used is `useState()` hook
-- <img width="777" alt="useState-manual" src="https://github.com/partho-dev/react/assets/150241170/70a0eaaa-30a4-432f-b8e3-18ebb7b36a93">
-- <img width="708" alt="useState-prev" src="https://github.com/partho-dev/react/assets/150241170/7a6e1f94-0d71-4baa-b006-62b5e493a7f1">
+<img width="777" alt="useState-manual" src="https://github.com/partho-dev/react/assets/150241170/70a0eaaa-30a4-432f-b8e3-18ebb7b36a93">
 
-setState can not be updated(mutated) manually, it can only be updated upon any event that is making some changes in the DOM
-When the state changes in React, a process called reconciliation occurs. React creates a virtual DOM representation of the updated state, compares it with the previous virtual DOM, and then updates only the parts of the actual DOM that have changed. This process is known as the Virtual DOM diffing algorithm.
-So, while the entire virtual DOM is considered for optimization, only the necessary changes are applied to the real DOM to minimize the performance impact. This is one of the key features of React that helps improve efficiency in rendering updates.
+<img width="708" alt="useState-prev" src="https://github.com/partho-dev/react/assets/150241170/7a6e1f94-0d71-4baa-b006-62b5e493a7f1">
 
-In the application, if there is any scenario comes where there is something changes based on some event like click of a button, think of  () and whatever that needs to be changed, put that in the state variable.
+- `setState` can not be `updated(mutated) manually`, it can only be updated upon any `event` that is making some changes in the DOM
+- When the state changes in React, a process called `reconciliation` occurs. React creates a `virtual DOM` representation of the updated state, compares it with the previous virtual DOM, and then updates only the parts of the actual DOM that have changed. This process is known as the Virtual DOM `diffing algorithm`.
 
-If you want to add new element upon clicking on a button for an existing state variable, you need to preserve the old array and then add the new element in the array
-	[…name, “John”]
+- So, while the entire virtual DOM is considered for optimization, only the necessary changes are applied to the real DOM to minimize the performance impact. This is one of the key features of React that helps improve efficiency in rendering updates.
+
+- In the application, if there is any scenario comes where there is something changes based on some `event` like `click of a button`, think of  `()` and whatever that needs to be changed, put that in the `state variable`.
+
+- If a new element needs to be created upon clicking on a button for an existing state variable, we need to preserve the old array and then add the new element in the array
+```
+[…name, “John”]
+
+```
 ![useState-old](https://github.com/partho-dev/react/assets/150241170/4e0d97e2-d3b7-4956-891f-c6c4d345028a)
 
-When you have a state variable in the parent component and want to update it based on an action or event in the child component, the typical pattern is to define a function in the parent component that performs the state update and then pass this function as a prop to the child component.
-Here's a summary of your correct understanding:
-* 		Data Handling in Parent Component: Most of the time, state management (e.g., using setVal) happens in the parent component because that's where the state is usually maintained.
-* 		Child Component Interaction: When you want to trigger state changes based on events or actions in the child component, you create a function in the parent component to handle the state update.
-* 		Passing Functions as Props: To make this function available in the child component, you pass it as a prop to the child component. It's crucial not to execute the function during the prop passing, just pass the reference to the function.
-* 		Using Function in Child Component: Inside the child component, you call the function passed as a prop when a specific event occurs (e.g., a button click). This way, the child component can signal the parent to update the state.
-This approach follows the principles of React's one-way data flow, where state is managed in a parent component and actions in child components trigger updates through callback functions passed as props.
+- `Data` flows from top to botttom method, from `parent 2 child`
+- The state is also created on the parent component, but, if the state needs to be updated based on some action like `button click` on `child` component, that can be possible by passing a `function` from parent to child as a `prop`. 
 
-
-![parent](https://github.com/partho-dev/react/assets/150241170/690e1a98-8f8d-4b1a-8445-7b2f01d4b81a)
-
-![child](https://github.com/partho-dev/react/assets/150241170/e5e5c5ef-f451-4f59-af73-be4facc4dab1)
-
-
-
-Showing repetitive components on UI
+## Showing repetitive components on UI
 
 If we want to show 2 cards on UI, we will create a child component as Cards and show them twice into parent component.
 And if we want to show content on the card, we pass props from parent to the child card component.
@@ -57,8 +50,82 @@ const Cards = ({...item}) => {
 
 ![result](https://github.com/partho-dev/react/assets/150241170/e8ff5cdf-c6e8-4e0b-9537-0d28722e873f)
 
+### Lets understand the updating the state in the Parent component based on some event on the child component
 
-Child has a input field and a button, the items entered into the input field should be shown as h1 once you click on button 
+1. Data Handling happens in the Parent Component: Most of the time, state management (e.g., using setVal) happens in the parent component because that's where the state is usually maintained and the data stays there as well.
+
+```
+const App = () => {
+
+// Data
+  let cars = [
+    {price:"1000", model:"Maruthi", year:"2014", Km:"100", added:false},
+    {price:"2000", model:"Hyundai", year:"2015", Km:"200", added:true}
+  ]
+
+// Managing the state
+  const [data, setdata]=useState(cars)
+
+  return (
+    <div className='bg-cyan-800 w-full h-screen py-1'>
+      <div className='mt-10 flex items-center p-10 gap-10 flex-wrap '>
+      {data.map((item, index)=>{
+
+        //Passing the mapped item as a prop to the child component
+        return <Cards {...item} />
+      })}
+      </div>
+   
+    </div>
+  )
+}
+
+export default App
+```
+2. Child Component Interaction: If we want to have some change on state based on button click on Cards child component, we have to pass a function as a prop to the Cards component from the parent component. 
+
+```
+App.jsx
+
+// Create a function which responds based on child events
+ const handleClick = (index)=>{
+    alert(`You have clicked on ${index+1} no card`)
+  }
+
+  return (
+    <div className='bg-cyan-800 w-full h-screen py-1'>
+      <div className='mt-10 flex items-center p-10 gap-10 flex-wrap '>
+      {data.map((item, index)=>{
+
+        //Passing the mapped item as a prop to the child component & pass the function as a prop now
+        return <Cards data = {item} handleClick={handleClick} />
+      })}
+      </div>
+   
+    </div>
+  )
+```
+**On the child**
+3. Passing Functions as Props: To make this function available in the child component, pass it as a prop to the child component. It's crucial not to execute the function during the prop passing, just pass the reference to the function.
+```
+// Accept the function as a prop
+const Cards = ({data, handleClick, index}) => {}
+
+//accept that on the button and pass the event to parent component
+// Just pass the reference
+<button onClick={handleClick} Click </button>
+
+// But as our function needed to know the index of the card, so we need to pass the index value to the function, so we are making that function executable, 
+// To make it executable, the click function needs to pass a call back function and there we will make our custom function executable, once the call back function is called upon button clicked
+<button onClick={()=>handleClick(index)} Click </button>
+
+```
+![parent](https://github.com/partho-dev/react/assets/150241170/690e1a98-8f8d-4b1a-8445-7b2f01d4b81a)
+
+![child](https://github.com/partho-dev/react/assets/150241170/e5e5c5ef-f451-4f59-af73-be4facc4dab1)
+
+
+**Scenerio** : Child has a input field and a button, the items entered into the input field should be shown as h1 once you click on button 
 — You would need to have two state variables 
 — One for the items that are typed on the input box 
 — one for the lists of items that are getting stored after clicking on add

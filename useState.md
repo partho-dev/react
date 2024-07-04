@@ -46,6 +46,15 @@ So, we can get these cards created dynamically based on the data.
 
 ![scalable](https://github.com/partho-dev/react/assets/150241170/e7d5677f-db74-47fa-856d-3955729b50f0)
 
+On the child component, the props can be accepted the way we sent `...item`
+
+```
+const Cards = ({...item}) => {
+    // Destructure the object properties
+    const {content, cost} =item
+}
+```
+
 ![result](https://github.com/partho-dev/react/assets/150241170/e8ff5cdf-c6e8-4e0b-9537-0d28722e873f)
 
 

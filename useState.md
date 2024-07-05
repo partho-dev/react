@@ -247,3 +247,114 @@ console.log(` Category is: ${category}`)  = > Category is: electronics
  const category = decodeURIComponent(search.split("=")[1])
   console.log(` Category is: ${category}`) => Category is: men's clothing
 ```
+
+## useState() for different Data types
+1. `Number` Datatypes
+
+```
+        const App = () => {
+        // useState for "Number" datatypes
+        const[count, setCount] = useState(0)
+        const handleClick = ()=>{
+            setCount((prev)=>prev+1)
+        }
+        return (
+            <div>
+            <h1> Number is: {count}  </h1>
+            <button onClick={handleClick}> Increase the number</button>
+            </div>
+        )
+        }
+```
+
+2. `String` Data type
+
+```
+        import React, { useState } from 'react'
+
+        const App = () => {
+        // useState for string data types
+        const [name, setName] = useState("")
+        const handleChange = (e) =>{
+            setName(e.target.value)
+        }
+        return (
+            <div>
+            <>
+            <label htmlFor="name"> Name:  </label>
+            <input id='name' type="text"  placeholder='Type your name' value={name} onChange={handleChange} />
+            {name.trim().length==0 ? <p> No name entered Yet</p> : <h1> My Name is: {name} </h1> }
+            </>
+            </div>
+        )
+        }
+
+        export default App
+```
+
+3. `Boolean` Data type
+    - Conditional randering based on the boolean value
+
+```
+        import React, { useState } from 'react'
+
+        const App = () => {
+        // Boolean
+        const [status, setStatus] = useState(true)
+        const handleButton = () =>{
+            // setStatus(!status)
+            setStatus((prev)=>!prev)
+        }
+        return (
+            <div>
+            {/* {status? <h1> User is now : Logged-In </h1>: <h1>  User is now : Logged-Out </h1>} */}
+            <h1> The user is now: {status? "Logged-In" : "Logged-Out"} </h1>
+            <button  onClick={handleButton} className='px-2 py-1 bg-blue-300 rounded-md text-xs'> Click </button>
+            </div>
+        )
+        }
+
+        export default App
+
+```
+
+4. Data Types `Array`
+
+- How to `Add` & `Delete` items into the Array
+- To Delete the last element from the array 
+    - Use `slice()` method on the array.
+    - or use filter() method also 
+    - `setNumber((prev)=> prev.filter((elem, index)=> index!== prev.length-1 ))`
+- To Delete only the odd or even element 
+    - `setNumber((prev)=> prev.filter((elem, index)=> elem%2!==0 ))`
+- To Add 
+    - find the length of the array and then add +1 to the array length.
+
+```
+            import React, { useState } from 'react'
+
+            const App = () => {
+            //Array []
+            const [ number, setNumber] = useState([1, 2, 3, 4, 5, 6])
+            const handleAdd = ()=>{
+                setNumber((prev)=>[...prev, prev.length+1])
+            }
+
+            const handleDelete = ()=>{
+                // setNumbers((prev) => prev.slice(0, -1)) // Use slice method to delete the element from array
+                setNumber((prev)=> prev.filter((elem, index)=> index!== prev.length-1 ))
+            }
+
+            return (
+                <div>
+
+                {number.map((elem, index)=> <h1> The number is: {elem} </h1>)}
+                <button className='px-2 py-1 bg-blue-400 rounded-md mt-5 ml-2 text-xs' onClick={handleAdd}> Add </button>
+                <button className='px-2 py-1 bg-blue-400 rounded-md mt-5 ml-2 text-xs' onClick={handleDelete}> Delete </button>
+                
+                </div>
+            )
+            }
+
+            export default App
+```

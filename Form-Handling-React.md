@@ -140,8 +140,59 @@ We can write that under on onchange hander, for that we have to do these
 
 <img width="421" alt="form-react-2" src="https://github.com/partho-dev/react/assets/150241170/9608f272-e6cc-4d88-86c1-74659c7e170c">
 
-## This clearly is not an ideal solution to handle Form using these
+## This clearly is not an ideal solution to handle Form using these manual way
 - There is a package which is widely used for form which does all the heavy lifting
 - package name `react-hook-form` from `https://www.react-hook-form.com/`
 - npm install react-hook-form
+- This gives one hook `useForm()`
+- `useForm()` gives the below methods
+    - `register()`: Used to register inputs.
+        - register() provides these, & so we need to write very less codes
+            - onchange()
+            - onBlur()
+            - ref
+    - `handleSubmit()`: Handles form submission.
+    - `watch()`: Watches the form state
 
+- `<input type="text" placeholder="Type your name" {...register("name")} />`
+- {...register()} - we spread to get all e functions inside that input 
+- We cant write our own handleSubmit() handler, we have to use their handleSubmit(), which takes `data` as a parameter, here data are the input field key name like `name` `email` which is used to control the register function like this {...register(name)}
+
+```
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+
+const App = () => {
+  const [submitData, setSubmitData] = useState([])
+  const { register, handleSubmit, reset , watch} = useForm()
+  console.log(register())
+
+  const onSubmit = (data) => {
+    // console.log(data)
+    setSubmitData((prev)=>[...prev, data])
+    reset();
+  }
+  // const data = watch()
+
+  return (
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <input type="text" placeholder="Type your name" {...register("name")} />
+          <input type="email" placeholder="Type your email" {...register("email")} />
+          <input type="Submit" />
+        </div>
+      </form>
+      <div>
+        {submitData.length > 0 ? (
+          submitData.map((elem, index) => (
+          <h1 key={index}> My name is {elem.name} </h1> 
+          )) 
+        ) : (<h1> No Data found </h1>
+        )}
+      </div>
+    </>
+  )}
+
+export default App
+```

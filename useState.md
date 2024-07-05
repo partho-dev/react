@@ -287,3 +287,59 @@ const Context(props){
 
             export default App
 ```
+
+5. `Object` data types
+    - This is mostly used during form filling as it contains key:value pairs
+    - Lets try to create a form with two input fields and get the output as h1
+    - Here, we will have to create two seperate onchange handler for two different input fields
+    - Once the submit button is clicked, all the values stored in an object gets stored on a different Array
+    
+
+```
+        import React, { useState } from 'react'
+
+        const App = () => {
+        // objects
+        const [item, setItems] = useState({name:"",  age:""})
+        const [ data, setData] = useState([])
+        
+        // Create two seperate change handler for two different input fields
+        const handleName = (e)=>{
+            setItems((prev)=>{
+            return { ...prev, name:e.target.value}
+            })
+        }
+
+        const handleAge = (e)=>{
+            setItems((prev)=>{
+            return { ...prev, age:e.target.value}
+            })
+        }
+
+        const handleSubmit = (e)=>{
+            e.preventDefault()
+            setData((prev)=>[...prev, item])
+            setItems({name:"",  age:""})
+        }
+
+        return (
+            <>
+            <div>
+            <form >
+                <input type="text" placeholder='Type your name' value={item.name} onChange={handleName} />
+                <input type="email" placeholder='Type your email'  value={item.age} onChange={handleAge} />
+                <input onClick={handleSubmit} type="submit" />
+            </form>
+            </div>
+            <div>
+            { data.map((elem, index)=> (
+                <h1 key={index}> My name is {elem.name} & I am {elem.age} years old</h1> ))
+            }
+            </div>
+            </>
+        )
+        }
+
+        export default App
+
+```

@@ -201,33 +201,35 @@ const Cards = ({data}) => {
         - send that function to `Card` component as a prop and send the mapped `index` also as prop
         - The function is to update the state variable
     ```
-      const handleClick = (index)=>{
-    // setProduct needs a new array from its original array(prev)
-    setProductData((prev)=>{
-      // So, it returns the new array by mapping the prev array - return keywork
-      // map needs two arguments, one elem and another the dataIndex
-      return prev.map((elem, dataIndex)=>{
-        // if there is no condition, it returns the entire prev to setProduct
-        // But, here we need to check on which card the button was clicked, so we are matching if the index of card and index of prev matches
-        if(dataIndex===index){
-          // if that matches, update the entire object element, just change the property of added to the opposite of what was there before
-          return {...elem, added:!elem.added}
+            const handleClick = (index)=>{
+            // setProduct needs a new array from its original array(prev)
+            setProductData((prev)=>{
+            // So, it returns the new array by mapping the prev array - return keywork
+            // map needs two arguments, one elem and another the dataIndex
+            return prev.map((elem, dataIndex)=>{
+                // if there is no condition, it returns the entire prev to setProduct
+                // But, here we need to check on which card the button was clicked, so we are matching if the index of card and index of prev matches
+                if(dataIndex===index){
+                // if that matches, update the entire object element, just change the property of added to the opposite of what was there before
+                return {...elem, added:!elem.added}
+                }
+                return elem
+            })
+            })
         }
-        return elem
-      })
-    })
-  }
-
     ```
+
 - Send this function as a prop to Child component - Cards
 ```
 {productData.map((elem, index)=>{return <Cards key={index} data={elem} index={index} handleClick={handleClick} />})}
 ```
 - Receive that on child
+
 ```
 const Cards = ({data, index, handleClick})
 ```
 - pass that on the button with an arrow function, to avoid the function execute immediately
+
 ```
    <button className={`px-2 py-1 ${added?"bg-blue-200":"bg-green-200"} rounded-md text-xs`}
       onClick={()=>handleClick(index)}

@@ -126,134 +126,153 @@ const Cards = ({data, handleClick, index}) => {}
 
 
 **Scenerio** : Child has a input field and a button, the items entered into the input field should be shown as h1 once you click on button 
-— You would need to have two state variables 
-— One for the items that are typed on the input box 
-— one for the lists of items that are getting stored after clicking on add
+## How to proceed with the `Logic` 
+1. Two state variables would be needed
+    * One state vatiable for the items that are typed on the `input box` 
+    * Another state variable is for the lists of items that are getting stored after clicking on `add button`
 
+```
 const[item, setItem] =  useState("")
 const [list, setList] = useState([]) 
+```
 
-Handle the state variables from the input box -  
+### Handle the state variables from the input box 
+```
 const handleChange = (e)=>{
       setItem(e.target.value)
   }
-
-Handle the state variables when click on Add button
+```
+### Handle the state variables when click on Add button
+```
 const clickAddbtn = (e) =>{
     e.preventDefault(); /*This is used if we use form tag*/
     if(item.trim().length !==0) {
       setList((prev)=>[...prev, item])
       setItem("") /** To empty the input box */
     }}
-
-
+```
 ![child](https://github.com/partho-dev/react/assets/150241170/254020c0-13f6-484d-b35c-6c76194474b5)
 
 
-useState for Objects - Array of objects [{}, {}]
+## Practise - useState for `Objects` - Array of objects [{}, {}]
 1. first add objects, create an input box and once it fills, the data gets filled into the object
 2. Create more than one input box and once submit all the input box data to be stored in an object - 
     1. use the “name” attribute on the inout box
     2. try to define the object  of useState() with key as the name and value empty 
-React Routing and Dynamic Routing
+
+## React Routing and Dynamic Routing
 1. install react router dom
 2. go to main.jsx
-3. wrap App component inside <BrowserRouter>      <App/> <BrowserRouter/>
-4. go to App.jsx - import {Link} from react router dom
+3. wrap App component inside 
+```
+<BrowserRouter>  
+    <App/> 
+<BrowserRouter/>
+
+```
+4. go to App.jsx - import `{Link}` from react router dom
 5. inside the App, create the nav or navLink 
-    1. <Link to=“/”>  Home </Link>
-    2. <Link to=“/about”>  About </Link>
-6. After the nav is set, create the Routes for those nav on same app.jsc<Routes>           <Route path=“/“ element={<Home/>} />          <Route path=“/about“ element={<About/>} /> </Routes>
-7. For context - we have to even wrap the 3rd point inside context [ Its a react thing, so no need to install<Context>   <BrowserRouter>      <App/> <BrowserRouter/></Context>
-8. But for Context - first create a component named Context 
-9. Then go to App component and do step 7th
-10. go to Context component and get all the data from anyone as props const Context(props){}
-11. Then return props.childrenconst Context(props){             return props.children                 }
+    ```
+      <Link to=“/”>  Home </Link>
+      <Link to=“/about”>  About </Link>
+    ```
+6. After the nav is set, create the Routes for those nav on same app.jsc
+```
+<Routes>           
+    <Route path=“/“ element={<Home/>} />          
+    <Route path=“/about“ element={<About/>} /> 
+</Routes>
+```
+## React context  
+- we have to even wrap the <BrowserRouter> <App/>  inside context [ Its a react thing, so no need to install]
 
+```
+<Context>   
+    <BrowserRouter>      
+    <App/> 
+    <BrowserRouter/>
+</Context>
+```
+### Process of creating a component 
+- First create a `component` named `Context` 
+- Then go to App component and add the <BrowserRouter> <App/>  inside the <Context> 
+- Now, go to Context component and get all the data from anyone as `props` 
+```
+const Context(props){}
+```
+- Then `return props.children`
+```
+const Context(props){
+    return props.children }
+```
 
-React Animation for Marquee effect.
+## React Animation for Marquee effect.
 1. install framer motion :  npm i framer-motion
-2. import { motion } from "framer-motion"
-3. Then apply that to the element you want the animation [h1 or Div]
-4. <motion.div initial={{x:0}} animate={{x: 3, y: -60, scale: 0.7, rotate: 0, }} transition={{ease:”linear”, repeat:”infinity”, duration:””5}}/>
+2. import `{ motion }` from `"framer-motion"`
+3. Then apply that to the element you want the animation [`h1` or `Div` etc]
+```
+<motion.div initial={{x:0}} animate={{x: 3, y: -60, scale: 0.7, rotate: 0, }} transition={{ease:”linear”, repeat:”infinity”, duration:””5}}/>
+```
+
+## React, enable Back button to navigate to the previous page
+1. import `useNavigate()` 
+    const navigate = useNavigate()
+2. Now, on the back `button`, inside the `onclick(()=>{navigate(—1)})` 
+// Here -1 takes to the previous page
 
 
-React, enable Back button to navigate to the previous page
-1. import useNavigate()const navigate = useNavigate()
-2. Now, on the back button, inside the onclick(()=>{navigate(—1)}) // Here -1 takes to the previous page
-
-
-React - Once you click on user, it should routes to /user/:id and gives the user detail page info
-on the nav route, set the route for dynamic route
+## React - Once you click on user, it should routes to /user/:id and gives the user detail page info
+1. on the nav route, set the route for dynamic route
+```
 <Routes>
 <Route path='/user/:id' element={<UserDetails/>} />
 </Routes>
-
-Now, go to <UserDetails/> component
+```
+2. Now, go to <UserDetails/> component
+```
 import useParams from 'react-router-dom'
 
 const {id} = useParams()
 const {users} = useContext(userContext) 
+```
 
-
-Show unique category
+## How to Show unique category
+```
 const [products] = useContext(productContext)
   let uniqueCategory = products && products.reduce((p, c)=>[...p, c.category], [])
   uniqueCategory = [...new Set(uniqueCategory)]
+```
 
-Randomly changing the color of certain element
 
-Write a function
+## Randomly changing the color of certain element
+1. Write a function
+```
   const color = ()=>{
     return `rgba(${(Math.random()*255).toFixed()}, ${(Math.random()*255).toFixed()}, ${(Math.random()*255).toFixed()}, 0.3)`
   }
-
-then apply that function to that element background color or any other color
+```
+2. then apply that function to that element background color or any other color
+```
 <span style={{backgroundColor:color()}} className=' inline-block w-2 h-2 rounded'> </span> 
+```
 
-
-How to find Query Parameter from the URL :  http://localhost:5173/?category=electronics 
-find “ electronics” from here
-
+## How to find Query Parameter from the URL :  http://localhost:5173/?category=electronics 
+1. find `electronics` from here
+```
 import {useLocation} from “react-router-dom”
 const {search} = useLocation()
 console.log(` Search is: ${search}`) => Search is: ?category=men%27s%20clothing
+```
 
-To find the category : spilt that with “=“ and look for its 1st index value
+2. To find the category : spilt that with `=` and look for its `1st index value`
+```
 const category = search.split("=")[1]
 console.log(` Category is: ${category}`)  = > Category is: electronics
+```
 
-How to clean this kind of category : Category is: men%27s%20clothing
-Wrap the search split inside decodeURIComponent()
-
+## How to clean this kind of category : Category is: men%27s%20clothing
+- Wrap the search split inside `decodeURIComponent()`
+```
  const category = decodeURIComponent(search.split("=")[1])
   console.log(` Category is: ${category}`) => Category is: men's clothing
-
-
-
-Start a new project in React.
-npm install these packages - react-router-dom react-hot-toast react-icons
-tailwind related packages - Update the config files
-
-
-Ctr+Space = To get the suggestion for Tailwind CSS
-
-To have glass effect on website using tailwind CSS, we can generate that from this website - https://tailwindcss-glassmorphism.vercel.app/
-
-
-For having readymade style component for tailwind, we can use  flowbite - for table we can see this https://flowbite.com/docs/components/tables/
-
-If there are some items with both short and long descriptions, but, we want to keep the UI as consistant and maintain description of one line.
-Description : {description ? description : “No Description provided”} — This will show inconsistant lines
-To maintain a consistant of 100 words per description, we can use slice(0, 100)
-Desscription : {description ? description.slice(0, 100): “No Description Provided”} —> This will ensure to maintain a consistancy on UI
-
-To copy something on clipboard, we can use default windows property called - navigator
-1. First create a button - Copy Btn
-2. enable click handler - onClick(()=> handleClick(items_copy)  )
-3. create the click function - const handleClick = async (items_copy) =>{       await navigator.clipboard.writeText(items_copy)       toast.success(“Copied  ”)        }
-
-
-Redux flow
-
-Component  gets the data from Store using the useStore() hook
+```

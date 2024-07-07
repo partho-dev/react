@@ -61,12 +61,13 @@ Important concepts to memorise
 2. the browser url should change to `/user/john`
 3. on the page - it should say `Hello John`
 4. We cant make individual pages for each user, we will make a common page, and we will render the page for all users with their individual user info
-Create the Link on the content inside user page
+
+- Create the Link on the content inside user page
 <img width="507" alt="users-1" src="https://github.com/partho-dev/react/assets/150241170/02580201-c27a-4bee-ab81-15136b0a8401">
 
-Create a Dynamic Route for the user 
+- Create a Dynamic Route for the user 
 <img width="521" alt="users-0" src="https://github.com/partho-dev/react/assets/150241170/507b4785-f8a6-4a0e-aa27-75ca522b201e">
 
-To get the username on the page from the URL, react-router-dom provides `useParams()`
+- To get the username on the page from the URL, react-router-dom provides `useParams()`
 <img width="535" alt="users-2" src="https://github.com/partho-dev/react/assets/150241170/1adc0f73-0aed-47fb-b8ae-aa9039eee585">
 

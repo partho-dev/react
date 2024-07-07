@@ -67,9 +67,10 @@ const Product = () => {
     - 1st - the callback & 2nd - Empty Dependancy array
 3. If we want to render the entire component based on any particular state change, we just need to write the state name inside that `dependancy` array.
 
-* On the below code, the component will not be rendered for any change in any state, unless there is any change on `item` useState()
-* if there is no `[]` - The entire component would be refreshed everytime, due to any change in any state/
-* There would never be any refreshment or rendering of the Product.jsx component for any change on any component if we just update an empty `[]`
+## Explanation with a code
+* On the below code, the component will `not be rendered` for any change in any state, unless there is any change on `item` useState()
+* if there is no `[]` - The entire component would be `refreshed everytime`, due to any change in any state/
+* There would `never be any refreshment or rendering` of the Product.jsx component for any change on any component if we just update an `empty []`
 
 ```
 import React, { useEffect, useState } from 'react'

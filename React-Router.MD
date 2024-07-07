@@ -1,7 +1,7 @@
 - To navigate between different pages or components by clicking on any button, needs routing.
 - To impliment the routing on react, need a package `npm install react-router-dom`
 - On the main file mostly `Main.jsx`
-    - `import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'`
+    - `import { BrowserRouter, Routes, Route } from 'react-router-dom'`
     - //Rap the app with BrowserRouter
     ```
         <BrowserRouter>
@@ -74,6 +74,7 @@ Important concepts to memorise
 <img width="521" alt="users-0" src="https://github.com/partho-dev/react/assets/150241170/507b4785-f8a6-4a0e-aa27-75ca522b201e">
 
 - To get the username on the page from the URL, react-router-dom provides `useParams()`
+
 <img width="535" alt="users-2" src="https://github.com/partho-dev/react/assets/150241170/1adc0f73-0aed-47fb-b8ae-aa9039eee585">
 
 - useParams() provides an object which contains the info about the items passes to the url as a parameter

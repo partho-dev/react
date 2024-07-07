@@ -56,7 +56,7 @@ const Product = () => {
 ```
 <img width="941" alt="API-2" src="https://github.com/partho-dev/react/assets/150241170/8d2efe03-753c-4ccb-86c6-00b4634a62b1">
 
-## Component Rendering and Component Updating
+## Component Rendering(Refreshing the entire component) and Component Updating(Not refreshing the entire component/page)
 1. `Rendering` - Means the component gets `Deleted(Unmount)` first and then `Mounts` back
     - useEffect(()=>{})
     - only `1` parameter for useEffect() hook

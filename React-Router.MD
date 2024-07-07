@@ -34,8 +34,8 @@
 ```
 
 Important concepts to memorise
-1. Link to 
-2. Route path element
+1. Link **to**  `<Link to=" /"> Home </Link>`
+2. Route **path** **element** `<Route path='/' element={<Home/>}/>`
 3. To enable color change of Menu when its active
     1. instead of using `Link` use `NavLink`
     2. <NavLink style={()=>{}}> </NavLink> // This gives an arrow function

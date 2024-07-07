@@ -56,7 +56,7 @@ const Product = () => {
 ```
 <img width="941" alt="API-2" src="https://github.com/partho-dev/react/assets/150241170/8d2efe03-753c-4ccb-86c6-00b4634a62b1">
 
-## Component Rendering(Refreshing the entire component) and Component Updating(Not refreshing the entire component/page)
+## Component Rendering( *Refreshing the entire component* ) and Component Updating( *Not refreshing the entire component/page*)
 1. `Rendering` - Means the component gets `Deleted(Unmount)` first and then `Mounts` back
     - useEffect(()=>{})
     - only `1` parameter for useEffect() hook
@@ -65,3 +65,41 @@ const Product = () => {
     - useEffect(()=>{}, [])
     - It has `2` params
     - 1st - the callback & 2nd - Empty Dependancy array
+3. If we want to render the entire component based on any particular state change, we just need to write the state name inside that `dependancy` array.
+
+* On the below code, the component will not be rendered for any change in any state, unless there is any change on `item` useState()
+* if there is no `[]` - The entire component would be refreshed everytime, due to any change in any state/
+* There would never be any refreshment or rendering of the Product.jsx component for any change on any component if we just update an empty `[]`
+
+```
+import React, { useEffect, useState } from 'react'
+
+const Product = () => {
+    const[item, setItem]=useState("1st Item")
+    const [image, setImage] = useState("Good image")
+    useEffect(()=>{
+        console.log("Mounting Product Page")
+
+        return ()=>{
+            console.log("Unmounting Product Page")
+        }
+    }, [item])
+  return (
+    <div className='flex flex-col gap-4 p-3'>
+        <div className='bg-yellow-200 w-fit flex flex-col'>
+        <button onClick={()=>{setItem("Item is changed because of button clicked")}} className='px-2 py-2 bg-blue-300 rounded-md'> Product Change </button>
+        {item}
+        </div>
+
+        <div className='bg-yellow-200 w-fit flex flex-col'>
+            <button onClick={()=>{setImage("Image is changed because of button clicked")}} className='px-2 py-2 bg-blue-300 rounded-md'> Image Change</button>
+            {image}
+        </div>
+   
+
+    </div>
+  )
+}
+
+export default Product
+```

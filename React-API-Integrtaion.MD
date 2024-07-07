@@ -56,3 +56,12 @@ const Product = () => {
 ```
 <img width="941" alt="API-2" src="https://github.com/partho-dev/react/assets/150241170/8d2efe03-753c-4ccb-86c6-00b4634a62b1">
 
+## Component Rendering and Component Updating
+1. `Rendering` - Means the component gets `Deleted(Unmount)` first and then `Mounts` back
+    - useEffect(()=>{})
+    - only `1` parameter for useEffect() hook
+    - Only the `Callback function` 
+2. `Updating` - Means, only update the `State` which is changed without `unmounting` & `Remounting` the component
+    - useEffect(()=>{}, [])
+    - It has `2` params
+    - 1st - the callback & 2nd - Empty Dependancy array

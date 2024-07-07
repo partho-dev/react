@@ -55,6 +55,9 @@ Important concepts to memorise
         )} to={"/user"}> User </NavLink> 
     </nav>
     ```
+    4. `useParams()` helps to get the username from URL
+    5. `useNavigate()` helps to go back by passing that to the button onClick handler
+
 ### Dynamic Routing
 **Situation** : 
 1. Click on a user - `John` 
@@ -70,4 +73,14 @@ Important concepts to memorise
 
 - To get the username on the page from the URL, react-router-dom provides `useParams()`
 <img width="535" alt="users-2" src="https://github.com/partho-dev/react/assets/150241170/1adc0f73-0aed-47fb-b8ae-aa9039eee585">
+
+- useParams() provides an object which contains the info about the items passes to the url as a parameter
+- Go to the Userdetail.jsx page or component and import `useParams()` from `react-router-dom`
+<img width="756" alt="user-3" src="https://github.com/partho-dev/react/assets/150241170/db0fc500-d376-4ed7-bed3-587c8571eba4">
+
+The details can be destructured to the object properties as well
+- {username} = useParams()
+
+## Go back to previous page by clicking Go button
+<img width="647" alt="user-4" src="https://github.com/partho-dev/react/assets/150241170/9dce422f-59de-457a-918d-ca1eb9c8fd07">
 

@@ -84,3 +84,30 @@ The details can be destructured to the object properties as well
 ## Go back to previous page by clicking Go button
 <img width="647" alt="user-4" src="https://github.com/partho-dev/react/assets/150241170/9dce422f-59de-457a-918d-ca1eb9c8fd07">
 
+- To go one level back `navigate(-1)`
+
+## once we click on any link, it opens it to a different route page, if we want to open the details on the same page upon clicking
+1. Need to do some modification on the route
+
+Previously the route for `/user/:username` was taking to `userdetails.jsx` on a different page.
+- Here the routes are defined seperately
+```
+  <Routes>
+    <Route path='/user' element={<Users/>}/>
+    <Route path='/user/:username' element={<Usersdetail/>} />
+</Routes>
+```
+- To show one route inside another route, this need to be re-arranged
+- Remove the self close of `<Route />` of outer route and 
+- place the `inner` route inside the `outer` route
+- <Route> <Route/> </Route>
+```
+  <Routes>
+    <Route path='/user' element={<Users/>}> 
+        <Route path='/user/:username' element={<Usersdetail/>} />
+    <Route/>
+    
+  </Routes>
+```
+<img width="862" alt="user-5" src="https://github.com/partho-dev/react/assets/150241170/00679535-013d-4c77-a131-1e58235f492d">
+

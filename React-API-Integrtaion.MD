@@ -104,3 +104,9 @@ const Product = () => {
 
 export default Product
 ```
+
+- This is the same component of `Component mount` would be useful for us to call and get the data from API everytime that page/component loads.
+- User goes to `Home`  page and the Data shows on UI.
+- So, we will call the API inside the useWEffect on the Home page and see.
+<img width="1094" alt="API-3" src="https://github.com/partho-dev/react/assets/150241170/998b5bfc-32fb-4927-af47-6da624b86b91">
+

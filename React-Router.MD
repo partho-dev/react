@@ -55,8 +55,10 @@ Important concepts to memorise
         )} to={"/user"}> User </NavLink> 
     </nav>
     ```
-    4. `useParams()` helps to get the username from URL
-    5. `useNavigate()` helps to go back by passing that to the button onClick handler
+4. `useParams()` helps to get the username from URL
+5. `useNavigate()` helps to go back by passing that to the button onClick handler
+6. To show one route inside another route, the inner route has to be written inside the outer route
+7. `<Outlet/>` ensures to show the page as a section on the same page of outer route
 
 ### Dynamic Routing
 **Situation** : 

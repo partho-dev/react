@@ -98,3 +98,6 @@ const [products] = useContext(productContext)
     const category = decodeURIComponent(search.split("=")[1])
     console.log(` Category is: ${category}`) => Category is: men's clothing
     ```
+
+14. For Enabling `Routing` - We wrap the app with browserrouter : 3rd party package - react-router-dom
+15. For centralised `Data` - We wrap the app with context : Reacts own - useContext()

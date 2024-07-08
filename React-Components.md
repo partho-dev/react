@@ -1,9 +1,8 @@
-Components 
+## Components 
 Create a functional component
 - `rafce`
 - create one using rafce - It automatically takes the function name as the name of the component file name
 <img width="1042" alt="React-Component" src="https://github.com/partho-dev/react/assets/150241170/ab5f3ac4-75f3-488b-b58d-08d9597d3ad6">
-
 
 ## How we can use one components into another components
 1. Lets have an App components 

@@ -141,6 +141,9 @@ export default Product
     - DRY Principle: Centralizing Axios helps adhere to the "Don't Repeat Yourself" principle by reducing the need to configure Axios in multiple places, leading to cleaner, more maintainable code.
 
 ## Setting the centralised AXIOS
+1. import `Axios`
+2. create an instance - `const api = axios.create({baseURL:"https://fakestoreapi.com"})`
+3. create request intercept - see the doc `https://axios-http.com/docs/interceptors`
 
 ```
 // api.js

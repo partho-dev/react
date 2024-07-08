@@ -110,3 +110,105 @@ export default Product
 - So, we will call the API inside the useWEffect on the Home page and see.
 <img width="1094" alt="API-3" src="https://github.com/partho-dev/react/assets/150241170/998b5bfc-32fb-4927-af47-6da624b86b91">
 
+
+## Why do we need to have a centralised **AXIOS** in the application
+- When we work with REST API, we need to call the API to get the Data
+- We can call the API by importing AXIOS on each component seperately
+- But, this has some drawbacks like unable to maintain the session from the entire application level.
+- Login would happen through different session and while trying to access the restricted products through dofferent Axios, the user would not be able to authenticated as its a different axios object 
+- To maintain the sessions, its best practised to have a centralised Axios imported and then we can use the instance of that Axios on all the components.
+
+- More Detailed info
+1. Consistent Configuration:
+    - **Base URL**: Setting a base URL for all requests to the same endpoint, which maintains the consistant `baseurl`.
+    - **Headers**: Common headers like Authorization tokens or Content-Type can be set once and reused, ensuring consistency across all API calls.
+
+2. Session Management:
+    - **Authentication**: A centralized Axios instance can store authentication tokens (e.g., JWTs) and send them with each request. This ensures that user sessions are maintained across different components.
+    - **Session Persistence**: By using a single Axios instance, cookies or other session data can be consistently managed, avoiding issues where different Axios instances might not share the same session state.
+
+3. Interceptors:
+    - **Request Interceptors**: Centralized interceptors can handle tasks like attaching tokens to requests or logging request details uniformly across the application.
+    - **Response Interceptors**: They can be used to handle common response scenarios, such as redirecting to a login page on a 401 Unauthorized error or transforming response data before it reaches components.
+
+4. Error Handling:
+    - Centralized error handling ensures that common errors (e.g., network issues, 500 Internal Server Errors) are processed uniformly, providing a better user experience and reducing redundancy in error-handling code.
+
+5. Performance Optimization:
+    - Single Point of Configuration: With a centralized Axios instance, performance-related settings (like timeout values, retries, etc.) can be managed from one place, making it easier to tune performance across the application.
+
+6. Code Maintainability:
+    - DRY Principle: Centralizing Axios helps adhere to the "Don't Repeat Yourself" principle by reducing the need to configure Axios in multiple places, leading to cleaner, more maintainable code.
+
+## Setting the centralised AXIOS
+
+```
+// api.js
+import axios from 'axios';
+
+// Create an instance of Axios
+const api = axios.create({
+  baseURL: 'https://api.example.com',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Add a request interceptor
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Add a response interceptor
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      // Handle 401 errors (e.g., redirect to login)
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default api;
+```
+
+## Uisng the instance of axios on the components
+```
+// SomeComponent.js
+import React, { useEffect, useState } from 'react';
+import api from './api';
+
+const SomeComponent = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    api.get('/some-endpoint')
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error('API call failed:', error);
+      });
+  }, []);
+
+  return (
+    <div>
+      {/* Render data */}
+    </div>
+  );
+};
+
+export default SomeComponent;
+```

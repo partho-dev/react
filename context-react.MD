@@ -4,7 +4,7 @@
 - That problem is being solved by `React context API`
 
 ## Procedure
-1. Create a component called `Component.jsx` which returns the props.children
+1. Create a component called `Context.jsx` which returns the props.children
 2. To get those children as all the components we have to wrap that Context in the main.jsx
 
 ## Lets see that as an action 🌿

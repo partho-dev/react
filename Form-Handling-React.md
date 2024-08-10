@@ -1,6 +1,6 @@
 - Form is very important, as it collects the data from user and thats what the applications are made for. Make business decisions based on user data.
 - The data collection through form has many challenges
-    - Page refresh loses the Reract state and react deals with data using state
+    - Page refresh loses the React state and react deals with data using state
     - So, the default browser has a tendancy to reload the page upon any submit 
     - We need to prevent that.
 - React needs to store each data in state variable and then show them

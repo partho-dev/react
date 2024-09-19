@@ -1,9 +1,16 @@
 
-## Redux flow
+# <mark> Redux flow </mark>
+- Learn more about it from <https://redux-toolkit.js.org/>
+
+> Lets learn it together 😀
+
+
+---
 
 - ![React-Redux](https://github.com/user-attachments/assets/64dbfa11-0307-44d5-bbd3-5150f9942ba7)
 
-
+<br>
+<hr>
 
 - Component(User component , product Component) gets the data from Store using the `useSelector()` hook
 
